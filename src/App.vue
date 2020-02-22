@@ -7,7 +7,7 @@
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
         <div class="repo_head">
-          <a :href="`${base_url}${repo.name}`"> {{repo.name}}</a>
+          <a :href="`${base_url}${repo.name}`" target="_blank"> {{repo.name}}</a>
         </div>
         <div class="desc">{{repo.description}}</div>
       </div>
@@ -28,7 +28,7 @@ export default class App extends Vue {
   ];
 
   get activeRepos(){
-    return this.reposWithPages.sort((a: any, b: any) => new Date(b.updated_at) - new Date(a.updated_at));
+    return this.reposWithPages.sort((a: any, b: any) => (new Date(b.updated_at) as any) - (new Date(a.updated_at) as any));
   }
 
   get reposWithPages(){
@@ -71,14 +71,17 @@ export default class App extends Vue {
       height: 250px;
       margin: 10px;
       flex:1 30%;
+      border-radius: 5px;
       display: flex;
       flex-flow: column;
       border: 3px solid;
+      color: #AAA;
       }
       .repo_head{
         float: left;
         height: 50px;
-        border-bottom:1px solid;
+        border-bottom:1px dashed;
+        color: #CCC;
         text-align: center;
         }
       .repo .desc{
@@ -87,6 +90,7 @@ export default class App extends Vue {
         align-self: center;
         justify-self: center;
         box-sizing: border-box;
+        color: #000;
         }
       .repo a{
         color: #000;
@@ -99,6 +103,7 @@ export default class App extends Vue {
         padding: 10px 0px;
         }
       .repo a:hover{
-        background-color:#FF0;
+        color:#FFF;
+        background-color:#666;
         }
 </style>
