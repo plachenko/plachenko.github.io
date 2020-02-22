@@ -3,7 +3,7 @@
     <div id="header">
       <h1>Denis Perchenko</h1>
     </div>
-    <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div>
+    <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
         <div class="repo_head">
