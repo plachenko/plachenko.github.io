@@ -4,6 +4,7 @@
       <h1>Denis Perchenko</h1>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
+    <div id="twitchPlayer" v-show="playerShow" />
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
         <div class="repo_head">
@@ -18,6 +19,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+declare const Twitch: any;
+
 @Component({})
 export default class App extends Vue {
   private repos = [];
@@ -26,6 +29,8 @@ export default class App extends Vue {
     "plachenko.github.io",
     "flipslide_old"
   ];
+
+  private playerShow = false;
 
   get activeRepos(){
     return this.reposWithPages.sort((a: any, b: any) => (new Date(b.updated_at) as any) - (new Date(a.updated_at) as any));
@@ -36,6 +41,15 @@ export default class App extends Vue {
   }
 
   private mounted(){
+
+    const player = new Twitch.Player("twitchPlayer", {channel: 'plnrnd'});
+    player.addEventListener('offline', ()=>{
+      this.playerShow = false;
+    });
+    player.addEventListener('online', ()=>{
+      this.playerShow = true;
+    });
+
     fetch('https://api.github.com/users/plachenko/repos')
       .then((res) => {
         return res.json();
