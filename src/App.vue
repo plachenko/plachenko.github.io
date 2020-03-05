@@ -4,6 +4,9 @@
       <h1>Denis Perchenko</h1>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
+    <div id="live_banner">
+      <span>Live</span>
+    </div>
     <div id="twitchPlayer" v-show="playerShow" />
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
@@ -62,6 +65,10 @@ export default class App extends Vue {
 </script>
 
 <style>
+body{
+  padding: 0px;
+  margin: 0px;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -120,4 +127,15 @@ export default class App extends Vue {
         color:#FFF;
         background-color:#666;
         }
+    #live_banner{
+      background-color:#F00;
+      padding: 10px 0px;
+      color:#FFF;
+      text-align: center;
+      font-weight: bold;
+    }
+    #twitchPlayer{
+      align-self: center;
+      padding: 10px 0px;
+      }
 </style>
