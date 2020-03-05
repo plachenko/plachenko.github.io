@@ -2,9 +2,13 @@
   <div id="app">
     <div id="header">
       <h1>Denis Perchenko</h1>
+      <ul>
+        <li><a href="https://www.github.com/plachenko" target="_blank">Github</a></li>
+        <li><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
+      </ul>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
-    <div id="live_banner">
+    <div id="live_banner" v-show="playerShow">
       <span>Live</span>
     </div>
     <div id="twitchPlayer" v-show="playerShow" />
@@ -138,4 +142,9 @@ body{
       align-self: center;
       padding: 10px 0px;
       }
+
+  ul li{
+    margin: 0px 5px;
+    display: inline;
+  }
 </style>
