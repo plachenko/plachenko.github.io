@@ -103,7 +103,7 @@ body{
     flex-wrap: wrap;
     }
     .repo{
-      height: 150px;
+      height: 120px;
       margin: 10px;
       flex:1 30%;
       border-radius: 5px;
