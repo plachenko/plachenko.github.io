@@ -4,10 +4,8 @@
       <h1>Denis Perchenko</h1>
       <ul>
         <li><router-link to="/">Web Work</router-link></li>
-        <li><router-link to="/about">3D</router-link></li>
-        <li><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
-        <li><a href="https://www.github.com/plachenko" target="_blank">Github</a></li>
-        <li><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
+        <li><router-link to="/about">3D portfolio</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
       </ul>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
@@ -16,6 +14,12 @@
     </div>
     <div id="twitchPlayer" v-show="playerShow" />
     <router-view />
+    <div style="text-align:center;">
+      <ul>
+        <li id="gh"><div class="logo" /><a style="color:#FFF;" href="https://www.github.com/plachenko" target="_blank">Github</a></li>
+        <li id="ln"><div class="logo" /><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -59,7 +63,12 @@ body{
     flex:1;
     text-align: center;
     border-bottom: 2px dashed;
-  }
+    }
+    #header h1{
+      border-bottom: 2px solid;
+      padding: 20px 0px;
+      margin: 0px;
+    }
   #repo_container{
     display: flex;
     flex: 1;
@@ -119,6 +128,44 @@ body{
 
   ul li{
     margin: 0px 5px;
-    display: inline;
-  }
+    padding: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    }
+    ul a{
+      color: #444;
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      float:left;
+      height: 20px;
+      text-orientation: sideways;
+      }
+    ul .logo{
+      width: 20px;
+      height: 20px;
+      float:left;
+      margin-right: 10px;
+      border-right: #000 1px solid;
+      padding-right: 10px;
+      background-repeat: no-repeat !important;
+      }
+      #gh{
+        /* box-sizing:border-box; */
+        color: #2867B2;
+        border: 2px solid;
+      }
+      #ln {
+        /* box-sizing:border-box; */
+        color: #2867B2;
+        border: 2px solid;
+      }
+      #gh .logo{
+        background-size: contain;
+        background-image: url('~@/assets/GitHub-Mark-Light-32px.png');
+      }
+      #ln .logo{
+        background: url('~@/assets/11-linkedin-512.png');
+        background-size: contain;
+        }
 </style>
