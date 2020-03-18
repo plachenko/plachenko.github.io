@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    'ban-ts-ignore': false,
+    'ban-ts-ignore': '1',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
