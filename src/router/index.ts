@@ -4,6 +4,7 @@ import Work from '../views/Work.vue'
 import ThreeD from '../views/ThreeD.vue'
 import About from '../views/About.vue'
 import Live from '../views/Live.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -27,13 +28,29 @@ const routes = [
     path: '/live',
     name: 'Live',
     component: Live
-  }
+  },
+  { path: "*", component: PageNotFound }
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: './',
   routes
 })
+
+// Route case-sensitivity hotfix
+if (router.mode === 'history') {
+  router.history.getCurrentLocation = function() {
+    let path = window.location.pathname;
+    const base = router.history.base;
+
+    // Removes base from path (case-insensitive)
+    if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
+      path = path.slice(base.length);
+    }
+
+    return (path || '/') + window.location.search + window.location.hash;
+  }
+}
 
 export default router

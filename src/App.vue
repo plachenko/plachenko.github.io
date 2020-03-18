@@ -33,6 +33,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class App extends Vue {
   private playerShow = false;
   private contentShow = false;
+  private page: any;
 
   private enter(el: HTMLElement, done: any){
     gsap.from(el, .3, {opacity: 0, right: 100, onComplete: () => {
@@ -51,17 +52,19 @@ export default class App extends Vue {
   }
 
   private mounted(){
+    this.page = this.$route.query.p;
+
+    if(this.page){
+      this.$router.push(''+this.page);
+    }
     fetch('https://api.twitch.tv/helix/streams?user_id=45837842', { headers: {'Client-ID': 'wmdnr7ta0viy787wrc5xggnti8v8ua'}})
     .then((res: any)=>{
       return res.json();
     }).then((data: any)=>{
-      console.log(data);
       if(data.data.length){
         this.playerShow = true;
       }
-    }).catch((error) =>{
-      console.log(error);
-    });
+    })
   }
 }
 </script>
