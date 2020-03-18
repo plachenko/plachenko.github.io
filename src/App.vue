@@ -3,6 +3,9 @@
     <div id="header">
       <h1>Denis Perchenko</h1>
       <ul>
+        <li><router-link to="/">Web Work</router-link></li>
+        <li><router-link to="/about">3D</router-link></li>
+        <li><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
         <li><a href="https://www.github.com/plachenko" target="_blank">Github</a></li>
         <li><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
       </ul>
@@ -12,14 +15,7 @@
       <span>Live</span>
     </div>
     <div id="twitchPlayer" v-show="playerShow" />
-    <div id="repo_container">
-      <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
-        <div class="repo_head">
-          <a :href="`${base_url}${repo.name}`" target="_blank"> {{repo.name}}</a>
-        </div>
-        <div class="desc">{{repo.description}}</div>
-      </div>
-    </div>
+    <router-view />
   </div>
 </template>
 
@@ -30,22 +26,7 @@ declare const Twitch: any;
 
 @Component({})
 export default class App extends Vue {
-  private repos = [];
-  private base_url = "https://plachenko.github.io/";
-  private hidden = [
-    "plachenko.github.io",
-    "flipslide_old"
-  ];
-
   private playerShow = false;
-
-  get activeRepos(){
-    return this.reposWithPages.sort((a: any, b: any) => (new Date(b.updated_at) as any) - (new Date(a.updated_at) as any));
-  }
-
-  get reposWithPages(){
-    return this.repos.filter((i: any) => i.has_pages && (!this.hidden.includes(i.name)));
-  }
 
   private mounted(){
 
@@ -57,13 +38,6 @@ export default class App extends Vue {
       this.playerShow = true;
     });
 
-    fetch('https://api.github.com/users/plachenko/repos')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data: any) => {
-        this.repos = data;
-      })
   }
 }
 </script>
