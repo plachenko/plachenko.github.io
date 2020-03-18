@@ -3,8 +3,8 @@
     <div id="header">
       <h1>Denis Perchenko</h1>
       <ul>
-        <li><router-link to="/">Web Work</router-link></li>
-        <li><router-link to="/about">3D portfolio</router-link></li>
+        <li><router-link to="/">Web</router-link></li>
+        <li><router-link to="/3D">3D portfolio</router-link></li>
         <li><router-link to="/about">About</router-link></li>
       </ul>
     </div>
@@ -13,17 +13,23 @@
       <span>Live</span>
     </div>
     <div id="twitchPlayer" v-show="playerShow" />
-    <router-view />
-    <div style="text-align:center;">
-      <ul>
-        <li id="gh"><div class="logo" /><a style="color:#FFF;" href="https://www.github.com/plachenko" target="_blank">Github</a></li>
-        <li id="ln"><div class="logo" /><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank">LinkedIn</a></li>
+    <div style="min-height: 400px;">
+      <!-- <transition appear @enter="enter" @leave="leave"> -->
+        <router-view />
+      <!-- </transition> -->
+    </div>
+    <div style="text-align:center; padding-top: 10px; border-top: 1px dashed; margin-top: 30px;">
+      <ul id="bot">
+        <li id="gh"><a href="https://www.github.com/plachenko" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">Github</span></a></li>
+        <li id="ln"><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">LinkedIn</span></a></li>
+        <li id="tw"><a href="https://www.twitch.tv/plnrnd/" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">Twitch</span></a></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import gsap from 'gsap';
 import { Component, Vue } from 'vue-property-decorator';
 
 declare const Twitch: any;
@@ -31,6 +37,23 @@ declare const Twitch: any;
 @Component({})
 export default class App extends Vue {
   private playerShow = false;
+  private contentShow = false;
+
+  private enter(el: HTMLElement, done: any){
+    gsap.from(el, .3, {opacity: 0, right: 100, onComplete: () => {
+        done();
+        this.contentShow = false;
+      }
+    })
+  }
+
+  private leave(el: HTMLElement, done: any){
+    gsap.to(el, .3, {opacity: 0, left: 100, onComplete: () => {
+        done();
+        this.contentShow = true;
+      }
+    })
+  }
 
   private mounted(){
 
@@ -61,13 +84,17 @@ body{
   }
   #header{
     flex:1;
+    display: flex;
     text-align: center;
-    border-bottom: 2px dashed;
+    flex-flow: column;
+    align-items: center;
+    border-bottom: 1px dashed;
     }
     #header h1{
       border-bottom: 2px solid;
       padding: 20px 0px;
       margin: 0px;
+      width: 290px;
     }
   #repo_container{
     display: flex;
@@ -76,7 +103,7 @@ body{
     flex-wrap: wrap;
     }
     .repo{
-      height: 250px;
+      height: 150px;
       margin: 10px;
       flex:1 30%;
       border-radius: 5px;
@@ -126,6 +153,17 @@ body{
       padding: 10px 0px;
       }
 
+  ul li .router-link-exact-active{
+    box-sizing: border-box;
+    border-bottom:2px solid;
+  }
+  #bot li{
+    margin: 0px;
+  }
+  ul {
+    padding: 0px;
+  }
+
   ul li{
     margin: 0px 5px;
     padding: 10px;
@@ -146,26 +184,41 @@ body{
       height: 20px;
       float:left;
       margin-right: 10px;
-      border-right: #000 1px solid;
+      border-right: #fff 1px solid;
       padding-right: 10px;
       background-repeat: no-repeat !important;
       }
-      #gh{
+      #gh a{
         /* box-sizing:border-box; */
-        color: #2867B2;
-        border: 2px solid;
+        background-color:#000;
+        color:#FFF;
+        padding: 10px;
+        border-radius: 10px;
       }
-      #ln {
+      #tw a{
         /* box-sizing:border-box; */
-        color: #2867B2;
-        border: 2px solid;
+        color:#FFF;
+        border-radius: 10px;
+        padding: 10px;
+        background-color:#6441a5;
+      }
+      #ln a{
+        /* box-sizing:border-box; */
+        color:#FFF;
+        border-radius: 10px;
+        padding: 10px;
+        background-color:#2867B2;
       }
       #gh .logo{
         background-size: contain;
         background-image: url('~@/assets/GitHub-Mark-Light-32px.png');
       }
       #ln .logo{
-        background: url('~@/assets/11-linkedin-512.png');
+        background: url('~@/assets/linkedin-3-xxl.png');
+        background-size: contain;
+        }
+      #tw .logo{
+        background: url('~@/assets/TwitchGlitchWhite.png');
         background-size: contain;
         }
 </style>

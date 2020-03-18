@@ -8,7 +8,6 @@
         <div class="desc">{{repo.description}}</div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -47,3 +46,10 @@ export default class Work extends Vue {
 
 }
 </script>
+
+<style>
+.work{
+  padding-top: 30px;
+}
+
+</style>
