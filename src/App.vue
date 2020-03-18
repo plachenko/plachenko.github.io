@@ -6,13 +6,10 @@
         <li><router-link to="/">Web</router-link></li>
         <li><router-link to="/3D">3D portfolio</router-link></li>
         <li><router-link to="/about">About</router-link></li>
+        <li v-show="playerShow" class="live"><router-link to="/live">Live</router-link></li>
       </ul>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
-    <div id="live_banner" v-show="playerShow">
-      <span>Live</span>
-    </div>
-    <div id="twitchPlayer" v-show="playerShow" />
     <div style="min-height: 400px;">
       <!-- <transition appear @enter="enter" @leave="leave"> -->
         <router-view />
@@ -31,8 +28,6 @@
 <script lang="ts">
 import gsap from 'gsap';
 import { Component, Vue } from 'vue-property-decorator';
-
-declare const Twitch: any;
 
 @Component({})
 export default class App extends Vue {
@@ -56,15 +51,17 @@ export default class App extends Vue {
   }
 
   private mounted(){
-
-    const player = new Twitch.Player("twitchPlayer", {channel: 'plnrnd'});
-    player.addEventListener('offline', ()=>{
-      this.playerShow = false;
+    fetch('https://api.twitch.tv/helix/streams?user_id=45837842', { headers: {'Client-ID': 'wmdnr7ta0viy787wrc5xggnti8v8ua'}})
+    .then((res: any)=>{
+      return res.json();
+    }).then((data: any)=>{
+      console.log(data);
+      if(data.data.length){
+        this.playerShow = true;
+      }
+    }).catch((error) =>{
+      console.log(error);
     });
-    player.addEventListener('online', ()=>{
-      this.playerShow = true;
-    });
-
   }
 }
 </script>
@@ -162,6 +159,27 @@ body{
   }
   ul {
     padding: 0px;
+  }
+
+  .live .router-link-exact-active{
+    border: none;
+    box-sizing: content-box;
+  }
+  .live{
+    position: relative;
+    width: 30px;
+    height: 15px;
+    margin-left: 15px;
+  }
+  .live a{
+    top: -3px;
+    left: 0px;
+    position: absolute;
+    display: inline-block;
+    background-color:#F00;
+    padding: 8px;
+    border-radius: 5px;
+    color: #FFF;
   }
 
   ul li{

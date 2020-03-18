@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Work from '../views/Work.vue'
 import ThreeD from '../views/ThreeD.vue'
 import About from '../views/About.vue'
+import Live from '../views/Live.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/live',
+    name: 'Live',
+    component: Live
   }
 ]
 
