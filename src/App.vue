@@ -190,7 +190,7 @@ body{
       }
       #gh a{
         /* box-sizing:border-box; */
-        background-color:#000;
+        background-color:#24292e;
         color:#FFF;
         padding: 10px;
         border-radius: 10px;
