@@ -40,11 +40,9 @@ const router = new VueRouter({
 
 // Route case-sensitivity hotfix
 if (router.mode === 'history') {
-  // @ts-ignore
-  router.history.getCurrentLocation = function() {
+  (router as any).history.getCurrentLocation = function() {
     let path = window.location.pathname;
-    // @ts-ignore
-    const base = router.history.base;
+    const base = (router as any).history.base;
 
     // Removes base from path (case-insensitive)
     if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {

@@ -3,7 +3,7 @@
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
         <div class="repo_head">
-          <a :href="`${base_url}${repo.name}`" target="_blank"> {{repo.name}}</a>
+          <a :href="`${base_url}${repo.name}/`" target="_blank"> {{repo.name}}</a>
         </div>
         <div class="desc">{{repo.description}}</div>
       </div>
