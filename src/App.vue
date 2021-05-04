@@ -4,7 +4,7 @@
       <h1>Denis Perchenko</h1>
       <ul>
         <li><router-link to="/">Web</router-link></li>
-        <li><router-link to="/3D">3D portfolio</router-link></li>
+        <li><router-link to="/Art">Art</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li v-show="playerShow" class="live"><router-link to="/live">Live</router-link></li>
       </ul>
