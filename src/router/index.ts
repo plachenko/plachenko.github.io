@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Work from '../views/Work.vue'
-import ThreeD from '../views/ThreeD.vue'
+import Art from '../views/Art.vue'
 import About from '../views/About.vue'
 import Live from '../views/Live.vue'
 import PageNotFound from '../views/PageNotFound.vue'
@@ -15,9 +15,9 @@ const routes = [
     component: Work
   },
   {
-    path: '/3D',
-    name: 'ThreeD',
-    component: ThreeD
+    path: '/Art',
+    name: 'Art',
+    component: Art
   },
   {
     path: '/about',

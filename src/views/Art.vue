@@ -7,7 +7,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class ThreeD extends Vue {
+export default class Art extends Vue {
 
 }
 </script>
