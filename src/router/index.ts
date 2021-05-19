@@ -15,7 +15,7 @@ const routes = [
     component: Work
   },
   {
-    path: '/Art',
+    path: '/art',
     name: 'Art',
     component: Art
   },
