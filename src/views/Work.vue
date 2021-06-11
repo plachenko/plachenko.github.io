@@ -12,14 +12,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   name: 'Home'
 })
 export default class Work extends Vue {
   private repos = [];
-  private base_url = "https://plachenko.github.io/";
   private hidden = [
     "plachenko.github.io",
     "flipslide_old",

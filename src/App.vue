@@ -5,12 +5,13 @@
       <ul>
         <li><router-link to="/">Web</router-link></li>
         <li><router-link to="/art">Art</router-link></li>
+        <li><router-link to="/log">Log</router-link></li>
         <li><router-link to="/about">About</router-link></li>
-        <li v-show="playerShow" class="live"><router-link to="/live">Live</router-link></li>
+        <!-- <li v-show="playerShow" class="liveBTN"><router-link to="/live">Live</router-link></li> -->
       </ul>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
-    <div style="min-height: 400px;">
+    <div style="min-height: 48vh">
       <!-- <transition appear @enter="enter" @leave="leave"> -->
         <router-view />
       <!-- </transition> -->
@@ -19,7 +20,7 @@
       <ul id="bot">
         <li id="gh"><a href="https://www.github.com/plachenko" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">Github</span></a></li>
         <li id="ln"><a href="https://www.linkedin.com/in/denis-perchenko-b4ba2a7/" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">LinkedIn</span></a></li>
-        <li id="tw"><a href="https://www.twitch.tv/plnrnd/" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">Twitch</span></a></li>
+        <!-- <li id="tw"><a href="https://www.twitch.tv/plnrnd/" target="_blank"><div class="logo" /><span style="display: inline-block; padding-top: 2px;">Twitch</span></a></li> -->
       </ul>
     </div>
   </div>
@@ -27,11 +28,12 @@
 
 <script lang="ts">
 import gsap from 'gsap';
+import dashjs from 'dashjs';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class App extends Vue {
-  private playerShow = false;
+  private playerShow = true;
   private contentShow = false;
   private page: any;
 
@@ -57,14 +59,6 @@ export default class App extends Vue {
     if(this.page){
       this.$router.push(''+this.page);
     }
-    fetch('https://api.twitch.tv/helix/streams?user_id=45837842', { headers: {'Client-ID': 'wmdnr7ta0viy787wrc5xggnti8v8ua'}})
-    .then((res: any)=>{
-      return res.json();
-    }).then((data: any)=>{
-      if(data.data.length){
-        this.playerShow = true;
-      }
-    })
   }
 }
 </script>
@@ -148,15 +142,22 @@ body{
       text-align: center;
       font-weight: bold;
     }
-    #twitchPlayer{
-      align-self: center;
-      padding: 10px 0px;
-      }
 
   ul li .router-link-exact-active{
+    color: #444 !important;
     box-sizing: border-box;
     border-bottom:2px solid;
+    line-height: 13px;
   }
+
+  ul li :hover{
+    color: #AAA;
+  }
+
+  .liveBTN :hover{
+    color: #FFF;
+  }
+
   #bot li{
     margin: 0px;
   }
@@ -164,17 +165,20 @@ body{
     padding: 0px;
   }
 
-  .live .router-link-exact-active{
+  .liveBTN .router-link-exact-active{
+    color: #FFF !important;
+    padding-bottom: 0px;
+    margin-top: 3px;
     border: none;
     box-sizing: content-box;
   }
-  .live{
+  .liveBTN{
+    margin-left: 10px;
     position: relative;
     width: 30px;
     height: 15px;
-    margin-left: 15px;
   }
-  .live a{
+  .liveBTN a{
     top: -3px;
     left: 0px;
     position: absolute;
@@ -187,7 +191,8 @@ body{
 
   ul li{
     margin: 0px 5px;
-    padding: 10px;
+    /* padding: 10px; */
+    padding: 10px 10px 10px 8px;
     display: inline-block;
     border-radius: 10px;
     }

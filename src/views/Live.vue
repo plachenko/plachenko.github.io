@@ -1,29 +1,39 @@
 
 <template>
   <div class="live">
-    <div id="twitchPlayer" />
+    <video ref="videoPlayer" controls="true" autoplay="" id="videoPlayer" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import dashjs from 'dashjs';
 
-declare const Twitch: any;
 
 @Component({
   name: 'Live'
 })
 export default class Live extends Vue {
   mounted(){
-    const player = new Twitch.Player("twitchPlayer", {channel: 'plnrnd'});
-    /*
-    player.addEventListener('offline', ()=>{
-      this.playerShow = false;
-    });
-    player.addEventListener('online', ()=>{
-      this.playerShow = true;
-    });
-    */
+    const url = "http://localhost:8085/live/stream/index.mpd";
+    const player = dashjs.MediaPlayer().create();
   }
 }
 </script>
+
+<style scoped>
+.live{
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+}
+
+#videoPlayer{
+  width: 100%;
+  max-width: 800px;
+  flex:1;
+}
+
+</style>
