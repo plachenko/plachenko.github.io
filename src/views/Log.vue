@@ -88,12 +88,10 @@ export default class LogList extends Vue {
   }
 
   getGists(){
-    console.log('FETCHING!');
     fetch('https://api.github.com/users/plachenko/gists').then(response => response.json()).then( data => this.setLogs(data))
   }
 
   getPost(url: string){
-    console.log('Fetching post');
     fetch(url).then(response => response.json()).then( data => {
       const content = data.files[Object.keys(data.files)[0]].content;
       this.logs[this.logIdx-1].body = MarkdownIt().render(content);

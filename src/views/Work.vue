@@ -19,6 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class Work extends Vue {
   private repos = [];
+  private base_url = 'http://plachenko.github.io/';
   private hidden = [
     "plachenko.github.io",
     "flipslide_old",
