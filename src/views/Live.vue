@@ -17,6 +17,8 @@ export default class Live extends Vue {
   mounted(){
     const url = "http://localhost:8085/live/stream/index.mpd";
     const player = dashjs.MediaPlayer().create();
+
+    player.initialize(document.querySelector('#videoPlayer') as HTMLElement, url);
   }
 }
 </script>
