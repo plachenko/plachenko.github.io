@@ -247,4 +247,14 @@ body{
         background: url('~@/assets/TwitchGlitchWhite.png');
         background-size: contain;
         }
+        .innerTitle{
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+          color: #999;
+          padding-top: 100px;
+          }
+      .innerTitle a {
+        text-decoration: none; color: #88F; border-bottom: 2px dashed;
+        }
 </style>

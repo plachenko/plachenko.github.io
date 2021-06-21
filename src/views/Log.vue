@@ -94,7 +94,7 @@ export default class LogList extends Vue {
   getPost(url: string){
     fetch(url).then(response => response.json()).then( data => {
       const content = data.files[Object.keys(data.files)[0]].content;
-      this.logs[this.logIdx-1].body = MarkdownIt().render(content);
+      this.logs[this.logIdx-1].body = MarkdownIt({html: true}).render(content);
       this.saveLogs(this.logs);
       this.canRender = true;
     })
@@ -137,20 +137,20 @@ export default class LogList extends Vue {
 
     this.gists = logFilter;
 
-    const log = {
-      title: '',
-      date: '',
-      url: '',
-      body: ''
-    };
 
-    logFilter.forEach((el: any) => {
+    logFilter.forEach((el: any, idx: number) => {
+      const log = {
+        title: '',
+        date: '',
+        url: '',
+        body: ''
+      };
       const date = el.created_at.slice(0,10).split('-');
       log.title = el.description.substr(5);
       log.date = date;
       log.url = el.url
 
-      logs.push(log)
+      logs[(logFilter.length - 1) - idx] = log;
     });
 
     this.saveLogs(logs);

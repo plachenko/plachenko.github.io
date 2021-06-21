@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="innerTitle">A blank canvas is the potential for anything.</h2>
+    <h2 class="innerTitle">This page intentionally left blank.</h2>
   </div>
 </template>
 <script lang="ts">
