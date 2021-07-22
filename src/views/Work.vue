@@ -43,7 +43,6 @@ export default class Work extends Vue {
         this.getWork();
       }else{
         this.repos = JSON.parse(lsWork);
-        console.log('from LS!');
       }
     } else {
       this.getWork();
@@ -51,7 +50,6 @@ export default class Work extends Vue {
   }
 
   getWork(){
-    console.log('fetching...');
     fetch('https://api.github.com/users/plachenko/repos')
       .then((res) => {
         return res.json();
