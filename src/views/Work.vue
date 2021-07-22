@@ -34,14 +34,53 @@ export default class Work extends Vue {
     return this.repos.filter((i: any) => i.has_pages && (!this.hidden.includes(i.name)));
   }
 
+
   mounted(){
+    const lsWork = window.localStorage.getItem('work');
+    if(lsWork){
+      const dateDiff = this.parseDate();
+      if(dateDiff){
+        this.getWork();
+      }else{
+        this.repos = JSON.parse(lsWork);
+        console.log('from LS!');
+      }
+    } else {
+      this.getWork();
+    }
+  }
+
+  getWork(){
+    console.log('fetching...');
     fetch('https://api.github.com/users/plachenko/repos')
       .then((res) => {
         return res.json();
       })
       .then((data: any) => {
-        this.repos = data;
+        this.setWork(data);
+        // this.repos = data;
       });
+  }
+
+  setWork(data: any){
+    this.repos = data;
+    this.save(data);
+  }
+
+  save(ghObjs: any){
+    const date = new Date();
+    window.localStorage.setItem('work', JSON.stringify(ghObjs));
+    window.localStorage.setItem('lastWorkDate', JSON.stringify(date));
+  }
+
+  parseDate(){
+    const lsItem = window.localStorage.getItem('lastWorkDate');
+    const last = JSON.parse(lsItem as string);
+    const lastDate = new Date(last).getTime();
+    const now = Date.now();
+    const dateDiff = Math.floor(((((now - lastDate) / 1000) / 60) / 60) / 24);
+
+    return dateDiff;
   }
 
 }
