@@ -3,7 +3,7 @@
     <div id="repo_container">
       <div v-for="(repo, k) in activeRepos" :key="k" class="repo">
         <div class="repo_head">
-          <a :href="`${base_url}${repo.name}/`" target="_blank"> {{repo.name}}</a>
+          <a :href="`${base_url}${repo.name}/`" target="_blank"> {{ convertSpace(repo.name) }}</a>
         </div>
         <div class="desc">{{repo.description}}</div>
       </div>
@@ -34,7 +34,6 @@ export default class Work extends Vue {
     return this.repos.filter((i: any) => i.has_pages && (!this.hidden.includes(i.name)));
   }
 
-
   mounted(){
     const lsWork = window.localStorage.getItem('work');
     if(lsWork){
@@ -47,6 +46,10 @@ export default class Work extends Vue {
     } else {
       this.getWork();
     }
+  }
+
+  convertSpace(name: string){
+    return name.replace(/[-_]/g, ' ');
   }
 
   getWork(){
