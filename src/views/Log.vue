@@ -59,11 +59,7 @@ export default class LogList extends Vue {
 
     if(lsLogs){
       // A) Check if there are logs set in local storage.
-      const lsItem = window.localStorage.getItem('lastDate');
-      const last = JSON.parse(lsItem as string);
-      const lastDate = new Date(last).getTime();
-      const now = Date.now();
-      const dateDiff = Math.floor(((((now - lastDate) / 1000) / 60) / 60) / 24);
+      const dateDiff = this.parseDate();
 
       // Check if the last time the client fetched the API was over a day ago.
       if(dateDiff){
@@ -123,6 +119,16 @@ export default class LogList extends Vue {
     const date = new Date();
     window.localStorage.setItem('logs', JSON.stringify(logs));
     window.localStorage.setItem('lastDate', JSON.stringify(date));
+  }
+
+  parseDate(){
+    const lsItem = window.localStorage.getItem('lastDate');
+    const last = JSON.parse(lsItem as string);
+    const lastDate = new Date(last).getTime();
+    const now = Date.now();
+    const dateDiff = Math.floor(((((now - lastDate) / 1000) / 60) / 60) / 24);
+
+    return dateDiff;
   }
 
   // Set the local logs from a gist fetch.

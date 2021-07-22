@@ -59,7 +59,6 @@ export default class Work extends Vue {
       })
       .then((data: any) => {
         this.setWork(data);
-        // this.repos = data;
       });
   }
 
