@@ -5,9 +5,9 @@
       <ul>
         <li><router-link to="/">Web</router-link></li>
         <li><router-link to="/art">Art</router-link></li>
-        <li><router-link to="/log">Log</router-link></li>
+        <!-- <li><router-link to="/log">Log</router-link></li> -->
         <li><router-link to="/about">About</router-link></li>
-        <!-- <li v-show="playerShow" class="liveBTN"><router-link to="/live">Live</router-link></li> -->
+        <li v-show="playerShow" class="liveBTN"><router-link to="/live">Live</router-link></li>
       </ul>
     </div>
     <!-- <div style="height: 100px; margin: 10px; border: 2px solid; box-sizing: border-box; padding: 10px; text-align: center;">Latest Activity...</div> -->
@@ -56,6 +56,8 @@ export default class App extends Vue {
   private mounted(){
     this.page = this.$route.query.p;
 
+    console.log(process.env.VUE_APP_IP)
+
     if(this.page){
       this.$router.push(''+this.page);
     }
@@ -67,6 +69,7 @@ export default class App extends Vue {
 body{
   padding: 0px;
   margin: 0px;
+  background-color:#D3D3D3;
   }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
