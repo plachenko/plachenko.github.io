@@ -56,8 +56,6 @@ export default class App extends Vue {
   private mounted(){
     this.page = this.$route.query.p;
 
-    console.log(process.env.VUE_APP_IP)
-
     if(this.page){
       this.$router.push(''+this.page);
     }
