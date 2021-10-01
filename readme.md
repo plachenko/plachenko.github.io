@@ -1,6 +1,6 @@
 The site is made in [VueJS](vuejs.org). If for some reason you feel the urge to fork my site and try to make it your own it's built from the 'dev' branch.
 
-The 'master' branch is the result of the builds and what github looks for when serving to [[username].github.com](https://plachenko.github.com) pages. You will have to replace the username with yours and set up github pages with your account. These are the built html assets.
+The 'master' branch is the result of the builds and what github looks for when serving to [[username].github.io](https://plachenko.github.io) pages. You will have to replace the username with yours and set up github pages with your account. These are the built html assets.
 
 The 'dev' branch contains the 'pre-compiled' VueJS files. Use the readme on that branchfor various npm commands.
 
