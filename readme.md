@@ -16,4 +16,4 @@ One thing spa pages on github suffer from is correct path routing. The magic is 
 
 Feel free to add issues, missing pages, feature requests or personal complaints on my [issues page](https://github.com/plachenko/plachenko.github.io/issues).
 
-ThA A A A AAAA A AA A AAAAaAA ahAAAaAAAAAAAAAAAAAaaAAAAAAAAAAAAAAAAAA aa AAA aAhahahahaAAAAAAAAAAAAAAAA aaaa n k you.
+Thak you.
